@@ -13,8 +13,8 @@ export async function onRequestPost({ request, env }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        from: 'Heights HVAC Services <info@heightshvacservices.com>',
-        to: 'heightshvacservices@gmail.com',
+        from: 'JM Heights <info@jmheights.com>',
+        to: 'jmheightscorp@gmail.com',
         subject: 'Website Form Submission',
         html: `<p>
           Name: ${name} <br>
