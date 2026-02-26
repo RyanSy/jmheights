@@ -1,0 +1,19 @@
+{
+  "name": "heights-hvac-services-website",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx wrangler pages dev public/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "wrangler": "^4.19.1"
+  },
+  "dependencies": {
+    "resend": "^4.5.2"
+  },
+  "type": "module"
+}
