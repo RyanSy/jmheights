@@ -10,3 +10,4 @@
 [x] robots.txt
 [] TOS/Privacy Policy head
 [] Prevent SPAM form submissions
+[] Social media
