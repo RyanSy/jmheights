@@ -1,13 +1,13 @@
-###TODO
-[x] Buy domain
-[] Contact form forward to email
-[] Google tag
-[x] Logo
-[x] Info
-[x] Favicon
-[] OG image
-[x] site.manifest
-[x] robots.txt
-[] TOS/Privacy Policy head
-[] Prevent SPAM form submissions
-[] Social media
+### TODO
+- [x] Buy domain
+- [x] Contact form forward to email
+- [x] Google tag
+- [x] Logo
+- [x] Info
+- [x] Favicon
+- [] OG image
+- [x] site.manifest
+- [x] robots.txt
+- [x] TOS/Privacy Policy head
+- [] Prevent SPAM form submissions
+- [] Social media
