@@ -9,5 +9,9 @@
 - [x] site.manifest
 - [x] robots.txt
 - [x] TOS/Privacy Policy head
-- [] Prevent SPAM form submissions
-- [] Social media
+- [ ] Prevent SPAM form submissions
+- [ ] Social media
+- [ ] www redirect
+- [ ] Add images
+- [ ] Create info@jmheights.com
+- [x] Change company name in footer to JM Heights Cooling Corp.
