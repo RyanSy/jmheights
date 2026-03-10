@@ -248,8 +248,8 @@ export async function POST(request: NextRequest) {
       <span style="color: #64748b; font-size: 14px;">${cleanMessage.slice(0, 200)}${cleanMessage.length > 200 ? "…" : ""}</span>
     </div>
     <p>In the meantime, feel free to call us directly:</p>
-    <p style="font-size: 20px; font-weight: bold; color: #0B1D3A;">📞 (555) 123-4567</p>
-    <p style="font-size: 13px; color: #94a3b8;">Mon–Fri 7AM–6PM · Sat 8AM–4PM · Emergency services available</p>
+    <p style="font-size: 20px; font-weight: bold; color: #0B1D3A;">📞 (201) 824-3272</p>
+    <p style="font-size: 13px; color: #94a3b8;">Call Anytime · Emergency services available</p>
   </div>
   <div class="footer">
     © ${new Date().getFullYear()} JM Heights · Licensed & Insured · info@jmheights.com
