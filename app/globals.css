@@ -1,0 +1,259 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --navy: #0b1d3a;
+  --navy-light: #162b52;
+  --blue: #1e58d8;
+  --blue-light: #3b82f6;
+  --orange: #f97316;
+  --orange-deep: #c2410c;
+  --white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-dm-sans), "DM Sans", sans-serif;
+  background-color: #ffffff;
+  color: #1e293b;
+  overflow-x: hidden;
+}
+
+/* ========== Typography ========== */
+.font-display {
+  font-family: var(--font-barlow), "Barlow Condensed", sans-serif;
+}
+
+/* ========== Section Utilities ========== */
+.section-padding {
+  @apply py-20 md:py-28;
+}
+
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+/* ========== Diagonal Section Dividers ========== */
+.clip-diagonal-bottom {
+  clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%);
+}
+
+.clip-diagonal-top {
+  clip-path: polygon(0 12%, 100% 0, 100% 100%, 0 100%);
+}
+
+.clip-diagonal-both {
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+}
+
+/* ========== Gradient Text ========== */
+.text-gradient-orange {
+  background: linear-gradient(135deg, #f97316, #c2410c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #3b82f6, #1e3a8a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ========== Buttons ========== */
+.btn-primary {
+  @apply inline-flex items-center gap-2 px-8 py-4 bg-orange-500 text-white font-display font-bold text-lg tracking-wide rounded-sm transition-all duration-200 hover:bg-orange-600 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-orange-500/30 active:translate-y-0;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center gap-2 px-8 py-4 bg-transparent border-2 border-white text-white font-display font-bold text-lg tracking-wide rounded-sm transition-all duration-200 hover:bg-white hover:text-navy;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.btn-outline-orange {
+  @apply inline-flex items-center gap-2 px-8 py-4 bg-transparent border-2 border-orange-500 text-orange-500 font-display font-bold text-lg tracking-wide rounded-sm transition-all duration-200 hover:bg-orange-500 hover:text-white;
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ========== Cards ========== */
+.card-service {
+  @apply relative bg-white rounded-none border-l-4 border-orange-500 p-8 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1;
+}
+
+.card-review {
+  @apply bg-white rounded-sm p-6 shadow-md border border-gray-100 hover:shadow-lg transition-shadow;
+}
+
+/* ========== Nav ========== */
+.nav-link {
+  @apply relative text-white/80 hover:text-white font-medium transition-colors duration-200 text-sm tracking-wide;
+}
+
+.nav-link::after {
+  content: "";
+  @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-200;
+}
+
+.nav-link:hover::after {
+  @apply w-full;
+}
+
+/* ========== Scroll Animations ========== */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========== Background Grid ========== */
+.bg-grid {
+  background-image: linear-gradient(
+      rgba(30, 88, 216, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(30, 88, 216, 0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ========== Orange Accent Line ========== */
+.orange-accent {
+  @apply relative;
+}
+
+.orange-accent::before {
+  content: "";
+  @apply absolute left-0 top-0 w-1 h-full bg-orange-500;
+}
+
+/* ========== Star Rating ========== */
+.stars-fill {
+  color: #f59e0b;
+}
+
+/* ========== Gallery ========== */
+.gallery-item {
+  @apply relative overflow-hidden cursor-pointer;
+}
+
+.gallery-item img {
+  @apply w-full h-full object-cover transition-transform duration-500;
+}
+
+.gallery-item:hover img {
+  @apply scale-110;
+}
+
+.gallery-overlay {
+  @apply absolute inset-0 opacity-0 transition-opacity duration-300 flex items-center justify-center;
+  background: rgba(11, 29, 58, 0.6);
+}
+
+.gallery-item:hover .gallery-overlay {
+  @apply opacity-100;
+}
+
+/* ========== Form Inputs ========== */
+.form-input {
+  @apply w-full px-4 py-3 bg-white border border-gray-200 rounded-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-600/20 transition-all duration-200;
+}
+
+.form-label {
+  @apply block text-sm font-semibold text-gray-700 mb-1.5;
+}
+
+/* ========== Blog ========== */
+.blog-content h2 {
+  @apply text-2xl font-bold text-navy mt-8 mb-4;
+  font-family: "Barlow Condensed", sans-serif;
+}
+
+.blog-content h3 {
+  @apply text-xl font-bold text-navy-light mt-6 mb-3;
+  font-family: "Barlow Condensed", sans-serif;
+}
+
+.blog-content p {
+  @apply text-gray-600 leading-relaxed mb-4;
+}
+
+.blog-content ul {
+  @apply list-disc list-inside space-y-1 text-gray-600 mb-4 ml-4;
+}
+
+.blog-content strong {
+  @apply font-semibold text-gray-800;
+}
+
+/* ========== Scrollbar ========== */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e58d8;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #f97316;
+}
+
+/* ========== Loading Skeleton ========== */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ========== Prose (Terms / Privacy pages) ========== */
+.prose h2 {
+  @apply text-2xl font-bold text-[#0B1D3A] mt-10 mb-3;
+  font-family: "Barlow Condensed", sans-serif;
+}
+
+.prose p {
+  @apply text-gray-600 leading-relaxed mb-4;
+}
+
+.prose ul {
+  @apply list-disc list-inside space-y-1 text-gray-600 mb-4 ml-4;
+}
