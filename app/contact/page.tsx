@@ -41,9 +41,9 @@ export default function ContactPage() {
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { icon: Phone, title: "Call Us", sub: "(555) 123-4567", href: "tel:+15551234567" },
+              { icon: Phone, title: "Call Us", sub: "(201) 824-3272", href: "tel:+12018243272" },
               { icon: Mail, title: "Email Us", sub: "info@jmheights.com", href: "mailto:info@jmheights.com" },
-              // { icon: Clock, title: "Hours", sub: "Mon–Sat 7AM–6PM", href: null },
+              { icon: Clock, title: "Hours", sub: "Anytime", href: null },
               { icon: Shield, title: "Licensed", sub: "Bonded & Insured", href: null },
             ].map(({ icon: Icon, title, sub, href }) => (
               <div key={title} className="flex items-center gap-3">

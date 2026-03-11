@@ -86,11 +86,11 @@ export default function AboutSection() {
                 Call (201) 824-3272
                 <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
               </a>
-              <Link href="/gallery"
+              {/* <Link href="/gallery"
                 className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#0B1D3A] text-[#0B1D3A] font-bold tracking-wider uppercase text-sm hover:bg-[#0B1D3A] hover:text-white transition-all duration-200"
                 style={{ fontFamily: "var(--font-barlow), 'Barlow Condensed'", fontWeight: 700 }}>
                 See Our Work
-              </Link>
+              </Link> */}
             </div>
           </div>
         </div>
