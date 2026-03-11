@@ -238,7 +238,7 @@ export async function POST(request: NextRequest) {
 <div class="container">
   <div class="header">
     <div class="logo">
-      <img src="https://jmheights.com/JM_Heights_Logo.webp" alt="JM Heights Logo" style="max-width: 100%; height: auto;">
+      <img src="https://jmheights.com/JM_Heights_Logo.webp" alt="JM Heights Logo" style="max-width: 33%; height: auto;">
     </div>
     <div class="logo-text">JM HEIGHTS</div>
     <div class="logo-sub">Cooling Corp.</div>
