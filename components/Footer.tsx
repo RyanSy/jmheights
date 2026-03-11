@@ -13,8 +13,8 @@ const serviceLinks = [
 
 const quickLinks = [
   { label: "Home", href: "/" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Blog", href: "/blog" },
+  // { label: "Gallery", href: "/gallery" },
+  // { label: "Blog", href: "/blog" },
   { label: "Financing", href: "/#financing" },
   { label: "Contact", href: "/contact" },
 ];
