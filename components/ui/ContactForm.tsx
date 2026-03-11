@@ -20,10 +20,7 @@ const services = [
 function generateMathQuestion(): { question: string; answer: number } {
   const a = Math.floor(Math.random() * 9) + 1;
   const b = Math.floor(Math.random() * 9) + 1;
-  const ops = ["+", "-"] as const;
-  const op = ops[Math.floor(Math.random() * ops.length)];
-  const answer = op === "+" ? a + b : a - b;
-  return { question: `${a} ${op} ${b}`, answer };
+  return { question: `${a} + ${b}`, answer: a + b };
 }
 
 type FormState = "idle" | "submitting" | "success" | "error";
