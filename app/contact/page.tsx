@@ -43,7 +43,7 @@ export default function ContactPage() {
             {[
               { icon: Phone, title: "Call Us", sub: "(555) 123-4567", href: "tel:+15551234567" },
               { icon: Mail, title: "Email Us", sub: "info@jmheights.com", href: "mailto:info@jmheights.com" },
-              { icon: Clock, title: "Hours", sub: "Mon–Sat 7AM–6PM", href: null },
+              // { icon: Clock, title: "Hours", sub: "Mon–Sat 7AM–6PM", href: null },
               { icon: Shield, title: "Licensed", sub: "Bonded & Insured", href: null },
             ].map(({ icon: Icon, title, sub, href }) => (
               <div key={title} className="flex items-center gap-3">
