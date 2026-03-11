@@ -237,8 +237,11 @@ export async function POST(request: NextRequest) {
 <body>
 <div class="container">
   <div class="header">
+    <div class="logo">
+      <img src="https://jmheights.com/JM_Heights_Logo.webp" alt="JM Heights Logo" style="max-width: 100%; height: auto;">
+    </div>
     <div class="logo-text">JM HEIGHTS</div>
-    <div class="logo-sub">Roofing & Exteriors</div>
+    <div class="logo-sub">Cooling Corp.</div>
   </div>
   <div class="body">
     <h2>Hi ${cleanName}, we got your message!</h2>
@@ -252,7 +255,7 @@ export async function POST(request: NextRequest) {
     <p style="font-size: 13px; color: #94a3b8;">Call Anytimne · Emergency services available</p>
   </div>
   <div class="footer">
-    © ${new Date().getFullYear()} JM Heights · Licensed & Insured · info@jmheights.com
+    © ${new Date().getFullYear()} JM Heights Cooling Corp. · Licensed & Insured · info@jmheights.com
   </div>
 </div>
 </body>
