@@ -272,7 +272,7 @@ export default function ContactForm() {
         ) : (
           <>
             <Send size={16} />
-            Send My Message — It's Free
+            Send Message
           </>
         )}
       </button>
