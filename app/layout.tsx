@@ -105,7 +105,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           "areaServed": "North Jersey",
           "description": "Top rated, family owned HVAC & plumbing company serving North Jersey with 56+ years of experience.",
           "priceRange": "$$",
-          "openingHours": ["24/7, 365"]
+          "openingHours": ["Monday - Saturday, 8AM - 7PM"]
         })}} />
       </body>
     </html>

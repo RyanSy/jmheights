@@ -5,7 +5,7 @@ import { Phone, Mail, MapPin, Clock, Shield } from "lucide-react";
 export const metadata: Metadata = {
   title: "Contact Us | Free Estimates | JM Heights",
   description:
-    "Contact JM Heights for a free roof inspection and estimate. We respond within 24 hours. Call (555) 123-4567 or fill out our quick contact form.",
+    "Contact JM Heights for a free roof inspection and estimate. We respond within 24 hours. Call (201) 824-3272 or fill out our quick contact form.",
 };
 
 export default function ContactPage() {
@@ -43,7 +43,7 @@ export default function ContactPage() {
             {[
               { icon: Phone, title: "Call Us", sub: "(201) 824-3272", href: "tel:+12018243272" },
               { icon: Mail, title: "Email Us", sub: "info@jmheights.com", href: "mailto:info@jmheights.com" },
-              { icon: Clock, title: "Hours", sub: "Anytime", href: null },
+              { icon: Clock, title: "Hours", sub: "Monday - Saturday, 8AM - 7PM", href: null },
               { icon: Shield, title: "Licensed", sub: "Bonded & Insured", href: null },
             ].map(({ icon: Icon, title, sub, href }) => (
               <div key={title} className="flex items-center gap-3">

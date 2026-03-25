@@ -7,7 +7,7 @@ const contactInfo = [
     label: "Call Us",
     value: "(201) 824-3272",
     href: "tel:+12018243272",
-    subtext: "Call Anytime",
+    subtext: "Monday - Saturday, 8AM - 7PM",
   },
   {
     icon: MessageSquare,
