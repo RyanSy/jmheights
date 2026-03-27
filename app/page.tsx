@@ -22,7 +22,7 @@ export default function HomePage() {
       <HeroSection />
       <ServicesSection />
       <AboutSection />
-      {/* <ReviewsSection /> */}
+      <ReviewsSection />
       <FinancingSection />
       <CTASection />
       {/* <BlogPreview posts={latestPosts} /> */}
