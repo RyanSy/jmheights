@@ -3,6 +3,7 @@ import { DM_Sans, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { GoogleTagManager } from '@next/third-parties/google'
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -108,6 +109,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           "openingHours": ["Monday - Saturday, 8AM - 7PM"]
         })}} />
       </body>
+      <GoogleTagManager gtmId="GTM-5GNMJPKN" />
     </html>
   );
 }
