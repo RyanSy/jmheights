@@ -67,8 +67,23 @@ export const services: Service[] = [
       "Residential & commercial plumbing",
       "Water heater installation & repair",
       "Pipe repair & replacement",
-      "Drain cleaning & maintenance",
       "Emergency plumbing service",
+    ],
+  },
+  {
+    id: "drain-cleaning",
+    icon: "Waves",
+    title: "Drain Cleaning",
+    description:
+      "Full-service drain and sewer solutions for residential and commercial properties — from routine clogs to complete sewer rehabilitation.",
+    features: [
+      "Sewer jetting",
+      "Camera inspection",
+      "Sewer repair & replacement",
+      "Pumps & grinder pumps",
+      "Pipe locating",
+      "Drain clogs",
+      "Mitigation & cleanup",
     ],
   },
   {

@@ -4,7 +4,7 @@ A full-stack Next.js website built for JM Heights, featuring:
 
 - 🎨 **Sleek design** — blue, orange & white color scheme with bold industrial aesthetic
 - 📬 **Contact form** — Resend API integration with multiple anti-spam layers
-- ⭐ **Google Reviews** — Live reviews via Google Places API with fallback content
+- ⭐ **Google Reviews** — Live reviews via Google Business Profile API with fallback content
 - 📝 **Blog** — Full blog with listing, detail pages, and 5 sample posts included
 - 🖼️ **Gallery** — Filterable photo & video gallery with lightbox viewer
 - 🗺️ **Sitemap** — Auto-generated `sitemap.xml` + `robots.txt`
@@ -33,8 +33,11 @@ Edit `.env.local` and fill in:
 | `RESEND_API_KEY` | For sending contact form emails | [resend.com](https://resend.com) |
 | `CONTACT_EMAIL_TO` | Where to send form submissions | Your email |
 | `CONTACT_EMAIL_FROM` | Sender address (must be verified domain) | Resend dashboard |
-| `GOOGLE_PLACES_API_KEY` | For fetching Google Reviews | [Google Cloud Console](https://console.cloud.google.com) |
-| `GOOGLE_PLACE_ID` | Your Google Business Place ID | [Place ID Finder](https://developers.google.com/maps/documentation/places/web-service/place-id) |
+| `GOOGLE_OAUTH_CLIENT_ID` | OAuth 2.0 client ID | Google Cloud Console → APIs & Services → Credentials |
+| `GOOGLE_OAUTH_CLIENT_SECRET` | OAuth 2.0 client secret | Same credential |
+| `GOOGLE_OAUTH_REFRESH_TOKEN` | Long-lived refresh token | One-time local auth flow (see setup below) |
+| `GOOGLE_BUSINESS_ACCOUNT_ID` | Your GBP account resource name | e.g. `accounts/123456789` |
+| `GOOGLE_BUSINESS_LOCATION_ID` | Your GBP location resource name | e.g. `locations/987654321` |
 | `NEXT_PUBLIC_SITE_URL` | Your production URL | e.g. `https://jmheights.com` |
 
 ### 3. Run Development Server
@@ -139,24 +142,111 @@ Add these in **Cloudflare Dashboard → Pages → Your Project → Settings → 
 - `RESEND_API_KEY`
 - `CONTACT_EMAIL_TO`
 - `CONTACT_EMAIL_FROM`
-- `GOOGLE_PLACES_API_KEY`
-- `GOOGLE_PLACE_ID`
+- `GOOGLE_OAUTH_CLIENT_ID`
+- `GOOGLE_OAUTH_CLIENT_SECRET`
+- `GOOGLE_OAUTH_REFRESH_TOKEN`
+- `GOOGLE_BUSINESS_ACCOUNT_ID`
+- `GOOGLE_BUSINESS_LOCATION_ID`
 - `NEXT_PUBLIC_SITE_URL`
 
 ---
 
 ## Google Reviews Setup
 
-1. Enable the **Places API** in [Google Cloud Console](https://console.cloud.google.com)
-2. Create an API key with **Places API** enabled
-3. Find your Place ID:
-   - Go to [Place ID Finder](https://developers.google.com/maps/documentation/places/web-service/place-id)
-   - Search for your business
-   - Copy the Place ID (starts with `ChIJ...`)
-4. Add both to your environment variables
-5. The reviews are cached for 1 hour automatically
+The reviews route uses the **Google Business Profile API** authenticated with OAuth 2.0. This avoids service account key files entirely — instead you store a long-lived refresh token as an env var and the route exchanges it for a short-lived access token at runtime.
 
-If the API isn't configured, the site shows 6 high-quality example reviews instead.
+### 1. Create a Google Cloud Project
+
+Go to [Google Cloud Console](https://console.cloud.google.com) and create or select a project.
+
+### 2. Enable the APIs
+
+In **APIs & Services → Library**, search for and enable:
+
+- **My Business Account Management API**
+- **My Business Business Information API**
+
+### 3. Configure the OAuth Consent Screen
+
+Go to **APIs & Services → OAuth consent screen**:
+
+1. Choose **External** (unless your org uses Google Workspace and you want Internal)
+2. Fill in the required fields (app name, support email)
+3. Add the scope: `https://www.googleapis.com/auth/business.manage`
+4. Add your own Google account as a **test user** (required while the app is in Testing status)
+5. Save
+
+You do not need to publish the app. Keeping it in **Testing** status is fine — refresh tokens for test users do not expire.
+
+### 4. Create an OAuth 2.0 Client ID
+
+Go to **APIs & Services → Credentials → Create Credentials → OAuth client ID**:
+
+1. Application type: **Web application**
+2. Add `http://localhost` and `http://localhost:3000` to **Authorised redirect URIs**
+3. Save — copy the **Client ID** and **Client Secret** to your `.env.local`
+
+### 5. Get a Refresh Token (one-time local flow)
+
+Run this in your terminal, replacing the placeholder with your real client ID:
+
+```bash
+open "https://accounts.google.com/o/oauth2/v2/auth?\
+client_id=YOUR_CLIENT_ID\
+&redirect_uri=http://localhost\
+&response_type=code\
+&scope=https://www.googleapis.com/auth/business.manage\
+&access_type=offline\
+&prompt=consent"
+```
+
+1. Sign in with the Google account that manages the Business Profile
+2. Grant the requested permissions
+3. Google will redirect to `http://localhost/?code=AUTHORIZATION_CODE&...` — the page won't load, but copy the `code` value from the URL
+4. Exchange it for tokens:
+
+```bash
+curl -X POST https://oauth2.googleapis.com/token \
+  -d client_id=YOUR_CLIENT_ID \
+  -d client_secret=YOUR_CLIENT_SECRET \
+  -d code=AUTHORIZATION_CODE \
+  -d redirect_uri=http://localhost \
+  -d grant_type=authorization_code
+```
+
+The response includes a `refresh_token`. Copy it to `GOOGLE_OAUTH_REFRESH_TOKEN` in your `.env.local`. You only need to do this once.
+
+> **Why does the refresh token not expire?** Tokens for apps in **Testing** status and tokens granted by the owning Google account are long-lived. If you later publish the app and users revoke access or the token is unused for 6 months, you would repeat this step.
+
+### 6. Find Your Account and Location IDs
+
+With a valid access token in hand (use the `access_token` from the curl response above), list your resources:
+
+```bash
+# List accounts
+curl -H "Authorization: Bearer ACCESS_TOKEN" \
+  https://mybusinessaccountmanagement.googleapis.com/v1/accounts
+
+# List locations for an account
+curl -H "Authorization: Bearer ACCESS_TOKEN" \
+  "https://mybusinessbusinessinformation.googleapis.com/v1/accounts/ACCOUNT_ID/locations?readMask=name"
+```
+
+The IDs you need look like:
+- `accounts/123456789` → `GOOGLE_BUSINESS_ACCOUNT_ID`
+- `locations/987654321` → `GOOGLE_BUSINESS_LOCATION_ID`
+
+### 7. Final `.env.local` Values
+
+```env
+GOOGLE_OAUTH_CLIENT_ID=123456789-abc.apps.googleusercontent.com
+GOOGLE_OAUTH_CLIENT_SECRET=GOCSPX-...
+GOOGLE_OAUTH_REFRESH_TOKEN=1//0g...
+GOOGLE_BUSINESS_ACCOUNT_ID=accounts/123456789
+GOOGLE_BUSINESS_LOCATION_ID=locations/987654321
+```
+
+Reviews are fetched on demand and cached at the CDN edge for 1 hour. If the API is not configured, the site shows 6 example reviews instead.
 
 ---
 
@@ -201,7 +291,7 @@ jmheights/
 │   │   └── page.tsx         # Contact page
 │   └── api/
 │       ├── contact/route.ts # Contact form (edge)
-│       └── reviews/route.ts # Google Reviews (edge)
+│       └── reviews/route.ts # Google Business Profile reviews (edge)
 ├── components/
 │   ├── Navbar.tsx
 │   ├── Footer.tsx

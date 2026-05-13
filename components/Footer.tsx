@@ -13,8 +13,8 @@ const serviceLinks = [
 
 const quickLinks = [
   { label: "Home", href: "/" },
-  { label: "Gallery", href: "/gallery" },
-  { label: "Blog", href: "/blog" },
+  // { label: "Gallery", href: "/gallery" },
+  // { label: "Blog", href: "/blog" },
   { label: "Financing", href: "/#financing" },
   { label: "Contact", href: "/contact" },
 ];
@@ -169,7 +169,8 @@ export default function Footer() {
               <h5 className="text-white/40 text-xs uppercase tracking-widest mb-3">Hours</h5>
               <div className="space-y-1 text-xs">
                 <div className="flex justify-between text-white/60">
-                  <span className="text-orange-400">Call Anytime</span>
+                  <span className="text-orange-400">Monday - Saturday</span>
+                  <span className="text-white/30">8AM - 7PM</span>
                 </div>
               </div>
             </div>

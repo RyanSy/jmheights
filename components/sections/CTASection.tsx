@@ -23,7 +23,7 @@ export default function CTASection() {
           </h2>
 
           <p className="text-white/60 text-lg max-w-2xl mb-10">
-            Whether it's a routine tune-up, an emergency breakdown, or a full system replacement — JM Heights Cooling Corp. is ready. Call or text us anytime.
+            Whether it's a routine tune-up, an emergency breakdown, or a full system replacement — JM Heights Cooling Corp. is ready. Call or text us today!
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
