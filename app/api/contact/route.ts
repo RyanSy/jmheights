@@ -252,7 +252,7 @@ export async function POST(request: NextRequest) {
     </div>
     <p>In the meantime, feel free to call us directly:</p>
     <p style="font-size: 20px; font-weight: bold; color: #0B1D3A;">📞 (201) 824-3272</p>
-    <p style="font-size: 13px; color: #94a3b8;">Call Anytimne · Emergency services available</p>
+    <p style="font-size: 13px; color: #94a3b8;">Call Anytime · Emergency services available</p>
   </div>
   <div class="footer">
     © ${new Date().getFullYear()} JM Heights Cooling Corp. · Licensed & Insured · info@jmheights.com
