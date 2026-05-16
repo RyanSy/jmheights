@@ -1,29 +1,30 @@
-import Link from 'next/link';
-import { locationData } from '@/data/locations';
+import fs from 'fs'
+import path from 'path'
+import type { Metadata } from 'next'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
+
+// Source doc:  https://docs.google.com/document/d/14UwTY-FlQrezl78IRYQAnaUHPzby52Wu02Fo1udYyQo
+// Content file: content/service-areas.md
+const MD_PATH = path.join(process.cwd(), 'content/service-areas.md')
+
+export async function generateMetadata(): Promise<Metadata> {
+  const raw = fs.readFileSync(MD_PATH, 'utf-8')
+  const h1 = raw.match(/^#\s+(.+)$/m)?.[1] ?? '**Opening**'
+  return {
+    title: h1,
+    description: h1,
+  }
+}
 
 export default function ServiceAreasPage() {
+  const content = fs.readFileSync(MD_PATH, 'utf-8')
+
   return (
-    <div className="container mx-auto py-20">
-      <h1 className="text-3xl font-bold mb-10 text-center">Our Service Areas</h1>
-      
-      <div className="grid md:grid-cols-2 gap-12">
-        {Object.entries(locationData).map(([county, countyData]) => (
-          <div key={county} className="bg-gray-50 p-6 rounded-lg shadow-sm">
-            <h2 className="text-2xl font-semibold capitalize mb-4 border-b pb-2">
-              {county.replace('-', ' ')}
-            </h2>
-            <ul className="grid grid-cols-2 gap-2">
-              {countyData.towns.map((town: { slug: string; name: string }) => (
-                <li key={town.slug}>
-                  <Link href={`/service-areas/${town.slug}`} className="text-blue-600 hover:underline">
-                    {town.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+    <main className="container mx-auto px-4 py-8 max-w-4xl">
+      <article className="prose prose-lg prose-headings:font-bold prose-a:text-blue-600">
+        <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
+      </article>
+    </main>
+  )
 }
