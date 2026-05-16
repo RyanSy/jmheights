@@ -1,14 +1,23 @@
 import { getServiceData } from '@/lib/services';
 import ServiceTemplate from '@/components/templates/ServiceTemplate';
 
-export default async function SubServicePage({ params }: { params: { category: string, service: string, subservice: string } }) {
-  const data = await getServiceData(params.subservice);
-  
+interface PageProps {
+  params: Promise<{
+    category: string;
+    service: string;
+    subservice: string;
+  }>;
+}
+
+export default async function SubServicePage({ params }: PageProps) {
+  const { category, service, subservice } = await params;
+  const data = getServiceData(subservice);
+
   return (
-    <ServiceTemplate 
+    <ServiceTemplate
       title={data.title}
       content={data.content}
-      parentPath={`/${params.category}/${params.service}`}
+      parentPath={`/${category}/${service}`}
     />
   );
 }

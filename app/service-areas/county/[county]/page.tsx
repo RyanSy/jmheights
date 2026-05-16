@@ -2,8 +2,13 @@ import { locationData } from '@/data/locations';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
-export default function CountyPage({ params }: { params: { county: string } }) {
-  const data = locationData[params.county as keyof typeof locationData];
+interface PageProps {
+  params: Promise<{ county: string }>;
+}
+
+export default async function CountyPage({ params }: PageProps) {
+  const { county } = await params;
+  const data = locationData[county as keyof typeof locationData];
 
   if (!data) return notFound();
 
