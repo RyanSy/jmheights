@@ -22,19 +22,7 @@ const navigation = [
       { name: 'Our Team', href: '/about/team' },
     ],
   },
-  {
-    name: 'Plumbing',
-    href: '/plumbing',
-    children: [
-      { name: 'Water Heaters', href: '/plumbing/water-heaters' },
-      { name: 'Sewer Services', href: '/plumbing/sewer-services' },
-      { name: 'Drain Services', href: '/plumbing/drain-services' },
-      { name: 'Gas Line Services', href: '/plumbing/gas-line-services' },
-      { name: 'Sump Pumps', href: '/plumbing/sump-pump-services' },
-      { name: 'Leak Detection', href: '/plumbing/leak-detection' },
-    ],
-  },
-  {
+    {
     name: 'HVAC',
     href: '/hvac',
     children: [
@@ -56,11 +44,25 @@ const navigation = [
     ],
   },
   {
+    name: 'Plumbing',
+    href: '/plumbing',
+    children: [
+      { name: 'Water Heaters', href: '/plumbing/water-heaters' },
+      { name: 'Sewer Services', href: '/plumbing/sewer-services' },
+      { name: 'Drain Services', href: '/plumbing/drain-services' },
+      { name: 'Gas Line Services', href: '/plumbing/gas-line-services' },
+      { name: 'Sump Pumps', href: '/plumbing/sump-pump-services' },
+      { name: 'Leak Detection', href: '/plumbing/leak-detection' },
+    ],
+  },
+    { name: 'Commercial', 
+    href: '/commercial' 
+  },
+  {
     name: 'Service Areas',
     href: '/service-areas',
     children: serviceAreas,
   },
-  { name: 'Commercial', href: '/commercial' },
 ];
 
 export default function Navbar() {
