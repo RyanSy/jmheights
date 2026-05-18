@@ -9,6 +9,8 @@ interface PageProps {
   }>;
 }
 
+export const runtime = 'edge';
+
 export default async function SubServicePage({ params }: PageProps) {
   const { category, service, subservice } = await params;
   const data = getServiceData(subservice);
